@@ -1,10 +1,10 @@
 const express = require("express");
 const crypto = require("crypto");
 const cors = require("cors");
+require("dotenv").config();
 
 const app = express();
 const port = 3000;
-const PRE_SHARED_KEY = "XpsNpRi503ZFODIryK3r"; // Pre-shared key
 
 // Enable CORS for all routes
 app.use(cors());
@@ -14,6 +14,7 @@ app.use(express.json());
 
 // Index route that receives a token and returns its hash
 app.get("/", (req, res) => {
+  const PRE_SHARED_KEY = process.env.PRE_SHARED_KEY;
   const token = req.query.token;
 
   console.log("token", token);
